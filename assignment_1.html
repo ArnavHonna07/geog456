@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>assignment_1</title>
+</head>
+
+<style>
+    body{
+        background-color: rgb(3, 185, 51);
+    }
+
+    #redBox{
+        position: absolute;
+        width: 100%;
+        height: 50%;
+        top: 25%;
+        background-color: red;
+    }
+
+    .blueBox{
+        position: absolute;
+        top: 25%;
+        left: 25%;
+        width: 50%;
+        height: 50%;
+        background-color: #00a6ff;
+    }
+
+    h1{
+        position: relative;
+        text-align: center;
+        top: 30%;
+    }
+</style>
+
+<body>
+    <div id="redBox">
+        <div class="blueBox" onclick="console.log('The div was clicked')">
+            <h1 onclick="alert('Hello there!')">Click Here!</h1>
+        </div>
+    </div>
+</body>
+</html>
