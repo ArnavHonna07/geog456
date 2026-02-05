@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework_3</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""/>
+        
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+
+        <script src='./data/campSmokies.js'></script>
+</head>
+<body>
+    <h2>Campsite Locations in Great Smoky Mountains National Park</h2>
+    <div id="map"></div>
+
+    <style>
+        #map{
+            width: 1000px;
+            height: 700px;
+            position: relative;
+            left: 15%;
+        }
+    </style>
+
+    <script>
+        
+    var esri_sat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+    });
+
+    var esri_topo = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
+    });
+
+    var map = L.map('map').setView([35.63, -83.55], 10);
+    esri_sat.addTo(map);
+
+    var myIcon = L.icon({
+        iconUrl: './pin.png',    
+        iconSize: [30,30], 
+        popupAnchor: [0,0]
+    });
+
+    
+    var camps = L.geoJSON(campSmokies, {
+        pointToLayer: function (feature, latlng) { 
+            return L.marker(latlng, {icon: myIcon});}})
+        .bindPopup(function(layer){
+            return "<b>Name: </b>" + layer.feature.properties.TEXT_NAME + "<br/> <b>Capacity: </b>" + layer.feature.properties.CAPACITY;
+        });
+
+    var baseMaps = {
+        "Topo Map": esri_topo,
+        "Satellite": esri_sat
+    };
+
+    var overlayMaps = {
+        "Campsites": camps
+    };
+
+    var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
+       
+    </script>
+    
+    
+</body>
+</html>
