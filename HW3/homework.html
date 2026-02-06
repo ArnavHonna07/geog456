@@ -20,6 +20,9 @@
     <div id="map"></div>
 
     <style>
+        h2{
+            text-align: center;
+        }
         #map{
             width: 1000px;
             height: 700px;
@@ -38,26 +41,30 @@
 	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
     });
 
-    var map = L.map('map').setView([35.63, -83.55], 10);
-    esri_sat.addTo(map);
+    var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    });
 
+    var map = L.map('map').setView([35.63, -83.55], 10);
+    osm.addTo(map);
+    
     var myIcon = L.icon({
         iconUrl: './pin.png',    
         iconSize: [30,30], 
         popupAnchor: [0,0]
     });
 
-    
     var camps = L.geoJSON(campSmokies, {
         pointToLayer: function (feature, latlng) { 
             return L.marker(latlng, {icon: myIcon});}})
         .bindPopup(function(layer){
             return "<b>Name: </b>" + layer.feature.properties.TEXT_NAME + "<br/> <b>Capacity: </b>" + layer.feature.properties.CAPACITY;
-        });
+        }).addTo(map);
 
     var baseMaps = {
-        "Topo Map": esri_topo,
-        "Satellite": esri_sat
+        "Street": osm,
+        "Satellite": esri_sat,
+        "Topo": esri_topo
     };
 
     var overlayMaps = {
