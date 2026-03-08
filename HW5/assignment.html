@@ -1,0 +1,71 @@
+<html>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+
+     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+
+     <script src = './data.js'></script>
+</html>
+<style>
+    #map {
+        width: 800px;
+        height: 600px;
+        position: relative;
+        left: 15%;
+    }
+    
+    /* #capacitySlider {
+        position: relative ;
+    } */
+</style>
+<body>
+    <h2>Campsite Locations and Capacity in Great Smoky Mountains National Park</h2>
+    <div id="map"></div>
+    <h2 id ="capacity">Capacity: 2</h2>
+    <input id="capacitySlider" type = "range" name = "Capacity" min = "2" max = "20" value="2" step="2" oninput="moveSlider(this.value)">
+    
+<script>
+    var map = L.map('map').setView([35.63, -83.55], 10);
+    
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    var myIcon = L.icon({
+        iconUrl: './pin.png',    
+        iconSize: [30,30], 
+        popupAnchor: [0,0]
+    });
+
+    var camps = L.geoJSON(data, {
+        pointToLayer: function (feature, latlng) { 
+            return L.marker(latlng, {icon: myIcon});}})
+        .bindPopup(function(layer){
+            return "<b>Name: </b>" + layer.feature.properties.TEXT_NAME + "<br/> <b>Capacity: </b>" + layer.feature.properties.CAPACITY;
+    }).addTo(map);
+
+
+    function moveSlider(value) {
+        document.getElementById('capacity').innerHTML = 'Capacity: ' + value;
+        map.removeLayer(camps);
+        
+        // use the filter function to sort through the data and return campsite values according to slider value
+        var filteredCamps = data.features.filter(function (feature){
+            return feature.properties.CAPACITY >= value
+        });
+        
+        camps = L.geoJSON(filteredCamps, {
+            pointToLayer: function (feature, latlng) { 
+                return L.marker(latlng, {icon: myIcon});}})
+            .bindPopup(function(layer){
+                return "<b>Name: </b>" + layer.feature.properties.TEXT_NAME + "<br/> <b>Capacity: </b>" + layer.feature.properties.CAPACITY;
+        }).addTo(map);
+    }
+
+</script>
+    
+</body>
