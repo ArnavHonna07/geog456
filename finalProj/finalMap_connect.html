@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Project</title>
+
+    <!-- anychart scripts -->
+    <script src="https://cdn.anychart.com/releases/8.10.0/js/anychart-core.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/8.10.0/js/anychart-map.min.js"></script>
+    <!-- iran data -->
+    <script src="https://cdn.anychart.com/geodata/latest/countries/iran/iran.js"></script>
+    <script src="https://cdn.anychart.com/geodata/2.2.0/countries/iraq/iraq.js"></script>
+
+    <style>
+        html, body, #container, #container2 {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="container"></div>
+    <div id2="container2"></div>
+
+<script>
+        anychart.onDocumentReady(function () {
+            
+            // 4. Create the map instance
+            var map = anychart.connector();
+            
+            // 5. Set the geodata for Iran
+            map.geoData(anychart.maps.iran);
+            // map.geoData(anychart.maps.iraq);
+            
+            // 7. Create a choropleth series
+            var series = map.choropleth();
+            series.geoIdField('id');
+            series.colorScale(anychart.scales.linearColor('#deebf7', '#3182bd'));
+            
+            // 8. Set title and display the map
+            map.title("Map of Iran with Provinces");
+            map.container("container");
+            map.draw();
+        });
+
+        anychart.onDocumentReady(function () {
+            
+            // 4. Create the map instance
+            var map = anychart.connector();
+            
+            // 5. Set the geodata for Iran
+            map.geoData(anychart.maps.iraq);
+            
+            // 7. Create a choropleth series
+            var series = map.choropleth();
+            series.geoIdField('id2');
+            series.colorScale(anychart.scales.linearColor('#deebf7', '#3182bd'));
+            
+            // 8. Set title and display the map
+            map.title("Map of Iran with Provinces");
+            map.container("container2");
+            map.draw();
+        });
+</script>
+</body>
+</html>
