@@ -35,7 +35,7 @@
 <!-- edited by Arnav Honna -->
  
 <body>
-    <h1>Movement of Achaemenid Identity</h1>
+    <h1>Movement of the Achaemenid and Islamic identity in Iran upto the late 19th century</h1>
     <div id="container"></div>
 
 <script>
@@ -47,7 +47,8 @@ anychart.onDocumentReady(function () {
         {points: [34.39, 47.43, 30.19, 53.18], from: "Bisitun", to: "Pasargadae", event: "Achaemenid identity is reinforced in Pasargadae through inscriptions put up by Darius", stroke:"green"},
         {points: [34.39, 47.43, 29.93, 52.88], from: "Bisitun", to: "Persepolis", event: "Achaemenid identity is reinforced in Darius' capital city", stroke:"green", curvature: 0},
         {points: [30.19, 53.16, 34.39, 47.43], from: "Tomb of Cyrus", to: "Bisitun", event: "Tomb of Cyrus reinforces the Achaemenid identity due to its use as an investiture site for new kings", stroke:"green", curvature: -0.5},
-        {points: [29.93, 52.88, 35.72, 51.33], from: "Persepolis", to: "Tehran", event: "Achaemenid identity enters the nationalist discourse in the 19th century after archaeological discoveries in Persepolis", stroke:"red", curvature: 0},
+        {points: [29.93, 52.88, 35.72, 51.33], from: "Persepolis", to: "Tehran", event: "Achaemenid identity enters the nationalist discourse in the 19th century after archaeological discoveries in Persepolis", stroke:"red", curvature: 0.3},
+        {points: [32.65, 51.66, 35.72, 51.33], from: "Isfahan", to: "Tehran", event: "Iran's Islamic identity contends with the Achaemenid identity in the nationalist discourse", stroke:"red", curvature: 0}
     ];
 
 // create data set for the marker series
@@ -56,7 +57,8 @@ anychart.onDocumentReady(function () {
         {lat: 30.19, long: 53.16, name: "Tomb of Cyrus", label:{position:"right", anchor:"left-bottom"}, info: "An important site in Pasargadae where Cyrus is buried"},
         {lat: 30.19, long: 53.18, name: "Pasargadae", label:{position:"right", anchor:"left-bottom"}, info: "Capital city of Cyrus"},
         {lat: 29.93, long: 52.88, name: "Persepolis", label:{position:"left", anchor:"right-top"}, info: "Capital city of Darius"},
-        {lat: 35.72, long: 51.33, name: "Tehran", label:{position:"right", anchor:"left-bottom"}, info: "Capital city of Modern Iran"}
+        {lat: 35.72, long: 51.33, name: "Tehran", label:{position:"right", anchor:"left-bottom"}, info: "Capital city of Modern Iran"},
+        {lat: 32.65, long: 51.66, name: "Isfahan", label:{position:"right", anchor:"left-bottom"}, info: "Capital city of the Safavids who converted Iran to Shi'i Islam"}
     ];
 // create map chart
     var map = anychart.map()
