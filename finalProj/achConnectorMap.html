@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>achaemenid identity movement</title>
+
+<!-- anychart scripts -->
+    <script src="https://cdn.anychart.com/releases/develop/js/anychart-core.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/develop/js/anychart-map.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/develop/js/anychart-ui.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/develop/js/anychart-exports.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/develop/js/anychart-data-adapter.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.15/proj4.js"></script>
+    <link href="https://cdn.anychart.com/releases/develop/css/anychart-ui.min.css" type="text/css" rel="stylesheet">
+    <link href="https://cdn.anychart.com/releases/develop/fonts/css/anychart-font.min.css" type="text/css" rel="stylesheet">
+<!-- Iran geodata -->
+    <script src="https://cdn.anychart.com/geodata/latest/countries/iran/iran.js"></script>
+    
+    <style>
+        html, body, #container {
+            width: 100%;
+            height: 95%;
+            margin: 0;
+            padding: 0;
+        }
+        
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<!-- code sample from https://docs.anychart.com/Maps/Connector_Maps  -->
+<!-- edited by Arnav Honna -->
+ 
+<body>
+    <h1>Movement of Achaemenid Identity</h1>
+    <div id="container"></div>
+
+<script>
+    
+anychart.onDocumentReady(function () {
+
+// create data set
+    var data = [    
+        {points: [34.39, 47.43, 30.19, 53.18], from: "Bisitun", to: "Pasargadae", event: "Achaemenid identity is reinforced in Pasargadae through inscriptions put up by Darius", stroke:"green"},
+        {points: [34.39, 47.43, 29.93, 52.88], from: "Bisitun", to: "Persepolis", event: "Achaemenid identity is reinforced in Darius' capital city", stroke:"green", curvature: 0},
+        {points: [30.19, 53.16, 34.39, 47.43], from: "Tomb of Cyrus", to: "Bisitun", event: "Tomb of Cyrus reinforces the Achaemenid identity due to its use as an investiture site for new kings", stroke:"green", curvature: -0.5},
+        {points: [29.93, 52.88, 35.72, 51.33], from: "Persepolis", to: "Tehran", event: "Achaemenid identity enters the nationalist discourse in the 19th century after archaeological discoveries in Persepolis", stroke:"red", curvature: 0},
+    ];
+
+// create data set for the marker series
+    var data_marker = [
+        {lat: 34.39, long: 47.43, name: "Bisitun", label:{position:"center-bottom", anchor:"center-top"}, info: "Inscription that creates the Achaemenid identity. Commissioned by Darius"},
+        {lat: 30.19, long: 53.16, name: "Tomb of Cyrus", label:{position:"right", anchor:"left-bottom"}, info: "An important site in Pasargadae where Cyrus is buried"},
+        {lat: 30.19, long: 53.18, name: "Pasargadae", label:{position:"right", anchor:"left-bottom"}, info: "Capital city of Cyrus"},
+        {lat: 29.93, long: 52.88, name: "Persepolis", label:{position:"left", anchor:"right-top"}, info: "Capital city of Darius"},
+        {lat: 35.72, long: 51.33, name: "Tehran", label:{position:"right", anchor:"left-bottom"}, info: "Capital city of Modern Iran"}
+    ];
+// create map chart
+    var map = anychart.map()
+
+//create connector series and add markers
+    var series = map.connector(data);
+    var series_marker = map.marker(data_marker);
+
+// tooltips for the connector series
+    series.tooltip().format("From: {%from} \nTo: {%to} \n {%event}");
+
+// changing the startSize and endSize of the connectors
+    series.startSize(0);
+    series.endSize(0);
+
+// setting colors for hovered and selected
+    series.hovered().fill("black");
+    series.selected().fill("red");                                                                       
+    series.hovered().stroke("black");
+    series.selected().stroke("red");
+
+// setting the marker position
+    var markers = series.markers();
+    markers.position("center");
+
+// tooltips of the marker series
+    series_marker.tooltip().format("{%info}");
+
+// setting the marker type
+    markers.type("arrowhead");
+    markers.size(7);
+
+// setting the anchor for the markers
+    markers.anchor("left-center");
+
+// setting the labels
+    var labels = series.labels();
+    labels.enabled(false);
+
+
+// set geodata 
+    map.geoData(anychart.maps['iran']);
+    map.crs("wsg84");
+
+    series.markers({fill: '#000', size:13});
+// name of the chart
+//  map.title("Movement of the Achaemenid Identity");
+
+// set container id for the chart
+    map.container('container');
+
+// initiate chart drawing
+    map.draw();
+});
+</script>
+</body>
+</html>
