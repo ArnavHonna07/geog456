@@ -71,8 +71,8 @@ anychart.onDocumentReady(function () {
     series.tooltip().format("From: {%from} \nTo: {%to} \n {%event}");
 
 // changing the startSize and endSize of the connectors
-    series.startSize(0);
-    series.endSize(0);
+    // series.startSize(0);
+    // series.endSize(0);
 
 // setting colors for hovered and selected
     series.hovered().fill("black");
@@ -97,7 +97,6 @@ anychart.onDocumentReady(function () {
 // setting the labels
     var labels = series.labels();
     labels.enabled(false);
-
 
 // set geodata 
     map.geoData(anychart.maps['iran']);

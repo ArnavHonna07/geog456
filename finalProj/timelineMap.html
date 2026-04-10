@@ -14,9 +14,26 @@
         #timeline-embed .tl-timenav {
             background-color: whitesmoke;
         }
+
+        /* #ach-frame-container {
+            width: 100%;
+            height: calc(100vh - 540px);
+            margin: 0;
+        }
+
+        #ach-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+        } */
     </style>
 </head>
 <body>
+
+    <!-- <div id="ach-frame-container">
+        <iframe id="ach-frame" src="file:///Users/arnie/geog456/finalProj/achConnectorMap.html" title="Achaemenid connector map"></iframe>
+    </div> -->
+
     <script>
         var options = {
             timenav_height: 20,
@@ -26,7 +43,7 @@
             scale_factor: 5
         };
 
-        timeline = new TL.Timeline('timeline-embed','https://docs.google.com/spreadsheets/d/e/2PACX-1vSsbmtMPOdJioDO58HQHAQrMPiNwAQHNn8yFiAqXV9LtiNs4Ep64PDYcTaup4VOkLX00RDSEaPxCakx/pubhtml', 
+        timeline = new TL.Timeline('timeline-embed', 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSsbmtMPOdJioDO58HQHAQrMPiNwAQHNn8yFiAqXV9LtiNs4Ep64PDYcTaup4VOkLX00RDSEaPxCakx/pubhtml', 
             options);
     </script>
 </body>
