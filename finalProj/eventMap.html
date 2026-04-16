@@ -16,7 +16,8 @@
     <style>
         h1{
             position: relative;
-            left: 25%;
+            left: 20%;
+            right: 20%;
             font: 'palatino';
         }
         #map{
@@ -28,8 +29,8 @@
         }
     </style>
 </head>
-<body>
-    <h1>Movement of the Achaemenid identity in Iran upto the late 19th century</h1>
+<body style="background-color: #663300;">
+    <h1 style="color: #ffcc99;">Movement of the Achaemenid identity in Iran upto the late 19th century</h1>
     <div id="map"></div>
 
     <script>
@@ -44,9 +45,9 @@
         var tehranMarker= L.marker([35.72, 51.33])
                             .bindPopup("<b>Tehran: </b>" + "Capital city of Modern Iran")
                             .addTo(map);
-        // var isfahanMarker = L.marker([32.65, 51.66])
-        //                     .bindPopup("<b>Isfahan: </b>" + "Capital city of the Safavids who converted Iran to Shi'i Islam")
-        //                     .addTo(map);
+        var isfahanMarker = L.marker([32.65, 51.66])
+                            .bindPopup("<b>Isfahan: </b>" + "Capital city of the Safavids who converted Iran to Shi'i Islam")
+                            .addTo(map);
         var persepolisMarker = L.marker([29.93, 52.88])
                             .bindPopup("<b>Persepolis: </b>" + "Capital city of Darius")
                             .addTo(map);
