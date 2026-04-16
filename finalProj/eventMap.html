@@ -12,9 +12,6 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
         crossorigin=""></script>
-    
-    <script src="https://unpkg.com/leaflet-polyline-snakeanim"></script>
-    <script src="route.js"></script>
 
     <style>
         h1{
@@ -59,30 +56,6 @@
         var bisitunMarker = L.marker([34.39, 47.43])
                             .bindPopup("<b>Bisitun Inscription: </b>" + "Inscription that creates the Achaemenid identity. Commissioned by Darius")
                             .addTo(map);
-
-        var route = L.featureGroup([
-			bisitunMarker,
-			L.polyline([bis, pas]),
-			pasargadaeMarker,
-			L.polyline([pas, per]),
-			persepolisMarker,
-			L.polyline([per, teh]),
-			tehranMarker
-		// 	L.polyline([teh, isf]),
-		// 	isfahanMarker
-            ]);
-        
-        map.fitBounds(route.getBounds());
-        map.addLayer(route);
-        // route.addTo(map).snakeIn();
-
-        function snake() {
-			route.snakeIn();
-		}
-
-		route.on('snakestart snake snakeend', function(ev){
-			console.log(ev.type);
-		});
         
     </script>
     
