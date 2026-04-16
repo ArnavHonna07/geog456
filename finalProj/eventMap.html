@@ -16,8 +16,8 @@
     <style>
         h1{
             position: relative;
-            left: 20%;
-            right: 20%;
+            left: 10%;
+            /* right: 10%; */
             font: 'palatino';
         }
         #map{
@@ -30,7 +30,7 @@
     </style>
 </head>
 <body style="background-color: #663300;">
-    <h1 style="color: #ffcc99;">Movement of the Achaemenid identity in Iran upto the late 19th century</h1>
+    <h1 style="color: #ffcc99;">Movement of the two identities debated within the nationalist discourse in Iran since the late 19th century</h1>
     <div id="map"></div>
 
     <script>
@@ -58,6 +58,43 @@
                             .bindPopup("<b>Bisitun Inscription: </b>" + "Inscription that creates the Achaemenid identity. Commissioned by Darius")
                             .addTo(map);
         
+        var bis = L.latLng(34.39, 47.43);
+        var pas = L.latLng(30.19, 53.18);
+        var per = L.latLng(29.93, 52.88);
+        var isf = L.latLng(32.65, 51.66);
+        var teh = L.latLng(35.72, 51.33);
+
+        var path1 = [bis, pas]; // bisitun to pasargadae
+        var path2 = [bis, per]; // bisitun to persepolis
+        var path3 = [pas, bis]; // pasargadae (tomb of cyrus) to bisitun
+        var path4 = [per, teh]; // persepolis to tehran
+        var path5 = [isf, teh]; // isfahan to tehran
+
+        // from bisitun to pasargadae
+        var event1 = L.polyline(path1, {
+            color: 'black',
+            opacity: 1
+        }).bindPopup("Achaemenid identity is reinforced in Pasargadae through inscriptions put up by Darius").addTo(map);
+        // from bisitun to persepolis
+        var event2 = L.polyline(path2, {
+            color: 'black',
+            opacity: 1
+        }).bindPopup("Achaemenid identity is reinforced in Darius' capital city").addTo(map);
+        // from pasargadae (tomb of cyrus) back to bisitun
+        var event3 = L.polyline(path3, {
+            color: 'black',
+            opacity: 1
+        }).bindPopup("Tomb of Cyrus reinforces the Achaemenid identity due to its use as an investiture site for new kings").addTo(map);
+        // from persepolis to tehran
+        var event4 = L.polyline(path4, {
+            color: 'black',
+            opacity: 1
+        }).bindPopup("Achaemenid identity enters the nationalist discourse in the 19th century after archaeological discoveries in Persepolis").addTo(map);
+        // from isfahan to tehran
+        var event5 = L.polyline(path5, {
+            color: 'black',
+            opacity: 1
+        }).bindPopup("Iran's Islamic identity contends with the Achaemenid identity in the nationalist discourse").addTo(map);
     </script>
     
 </body>
