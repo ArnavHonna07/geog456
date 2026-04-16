@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""/>
+        
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+
+    <script src="https://unpkg.com/leaflet-polyline-snakeanim"></script>
+    <script src="route.js"></script>
+    
+    <style>
+        h2{
+            left: 15%;
+            font: 'times new roman', times, serif;
+        }
+        #map{
+            width: 1000px;
+            height: 700px;
+            position: relative;
+            left: 15%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Movement of the Achaemenid and Islamic identity in Iran upto the late 19th century</h1>
+    <div id="map"></div>
+    
+    
+    <script>
+        var map = L.map('map').setView([32.15, 54.34], 5.2);
+        
+        // WMTS basemap from OldMapsOnline
+        var modernIranLayer = L.tileLayer('https://wmts.oldmapsonline.org/maps/fd0bd384-a1f3-4330-8c0b-0e062f832da1/2025-10-21T08:25:26.453756Z/{z}/{x}/{y}.png?key=mpedHnQVShodfUBtWv5O')
+        .addTo(map);
+
+        var Tehranmarker = L.marker([35.72, 51.33]).addTo(map);
+        var Isfahanmarker = L.marker([32.65, 51.66]).addTo(map);
+        var Persepolismarker = L.marker([29.93, 52.88]).addTo(map);
+        var Pasargadaemarker = L.marker([30.19, 53.18]).addTo(map);
+        var Bisitunmarker = L.marker([34.39, 47.43]).addTo(map);
+
+        var teh = [35.72, 51.33],
+            isf = [32.65, 51.66],
+            per = [29.93, 52.88],
+            pas = [30.19, 53.18],
+            bis = [34.39, 47.43];
+        
+        var route = L.featureGroup([
+			L.marker(bis).bindPopup(<b>"Bisitun: "</b> + "Inscription that creates the Achaemenid identity. Commissioned by Darius"),
+			L.polyline([bis, pas]),
+			L.marker(pas).bindPopup(<b>"Pasargadae: "</b> + "Capital city of Cyrus. Also where the Tomb of Cyrus is located"),
+			L.polyline([pas, per]),
+			L.marker(per).bindPopup(<b>"Persepolis: "</b> + "Capital city of Darius"),
+			L.polyline([per, teh]),
+			L.marker(teh).bindPopup(<b>"Tehran: "</b> + "Capital city of Modern Iran"),
+			L.polyline([teh, isf]),
+			L.marker(isf).bindPopup(<b>"Isfahan: "</b> + "Capital city of the Safavids who converted Iran to Shi'i Islam")
+		], {snakingPause: 200});
+
+        map.fitBounds(route.getBounds());
+
+        route.addTo(map).snakeIn();
+
+		// function snake() {
+		// 	route.snakeIn();
+		// }
+
+		// route.on('snakestart snake snakeend', function(ev){
+		// 	console.log(ev.type);
+		// });
+
+
+        // // Define marker locations
+        // var markerLocations = [
+        //     [35.72, 51.33],  // Tehran
+        //     [32.65, 51.66],  // Isfahan
+        //     [29.93, 52.88],  // Persepolis
+        //     [30.19, 53.18],  // Pasargadae
+        //     [34.39, 47.43]   // Bisitun
+        // ];
+
+        // // Create animated polylines connecting the markers
+        // var polylines = [];
+        // for (let i = 0; i < markerLocations.length - 1; i++) {
+        //     var line = L.polyline([markerLocations[i], markerLocations[i + 1]], {
+        //         color: '#FF0000',
+        //         weight: 2,
+        //         opacity: 0.7
+        //     }).addTo(map);
+        //     polylines.push(line);
+        // }
+
+        // // Animate polylines with staggered timing
+        // var delay = 500;
+        // polylines.forEach(function(line, index) {
+        //     setTimeout(function() {
+        //         line.snakeIn();
+        //     }, delay * index);
+        // });
+
+        //  var ancientIranLayer = L.tileLayer('https://wmts.oldmapsonline.org/maps/9d48ca96-6281-51e7-9c77-14a9a293c2f8/2018-06-20T16:55:39.389044Z/{z}/{x}/{y}.png?key=mpedHnQVShodfUBtWv5O')
+        //  .addTo(map);
+
+    </script>
+</body>
+</html>
