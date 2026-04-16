@@ -44,21 +44,21 @@
         .addTo(map);
 
         // place markers
-        // var tehranMarker= L.marker([35.72, 51.33])
-        //                     .bindPopup("<b>Tehran: </b>" + "Capital city of Modern Iran")
+        var tehranMarker= L.marker([35.72, 51.33])
+                            .bindPopup("<b>Tehran: </b>" + "Capital city of Modern Iran")
+                            .addTo(map);
+        // var isfahanMarker = L.marker([32.65, 51.66])
+        //                     .bindPopup("<b>Isfahan: </b>" + "Capital city of the Safavids who converted Iran to Shi'i Islam")
         //                     .addTo(map);
-        // // var isfahanMarker = L.marker([32.65, 51.66])
-        // //                     .bindPopup("<b>Isfahan: </b>" + "Capital city of the Safavids who converted Iran to Shi'i Islam")
-        // //                     .addTo(map);
-        // var persepolisMarker = L.marker([29.93, 52.88])
-        //                     .bindPopup("<b>Persepolis: </b>" + "Capital city of Darius")
-        //                     .addTo(map);
-        // var pasargadaeMarker = L.marker([30.19, 53.18])
-        //                     .bindPopup("<b>Pasargadae: </b>" + "Capital city of Cyrus. Also where the Tomb of Cyrus is located")
-        //                     .addTo(map);
-        // var bisitunMarker = L.marker([34.39, 47.43])
-        //                     .bindPopup("<b>Bisitun Inscription: </b>" + "Inscription that creates the Achaemenid identity. Commissioned by Darius")
-        //                     .addTo(map);
+        var persepolisMarker = L.marker([29.93, 52.88])
+                            .bindPopup("<b>Persepolis: </b>" + "Capital city of Darius")
+                            .addTo(map);
+        var pasargadaeMarker = L.marker([30.19, 53.18])
+                            .bindPopup("<b>Pasargadae: </b>" + "Capital city of Cyrus. Also where the Tomb of Cyrus is located")
+                            .addTo(map);
+        var bisitunMarker = L.marker([34.39, 47.43])
+                            .bindPopup("<b>Bisitun Inscription: </b>" + "Inscription that creates the Achaemenid identity. Commissioned by Darius")
+                            .addTo(map);
 
         var route = L.featureGroup([
 			bisitunMarker,
