@@ -40,34 +40,41 @@
         var modernIranLayer = L.tileLayer('https://wmts.oldmapsonline.org/maps/fd0bd384-a1f3-4330-8c0b-0e062f832da1/2025-10-21T08:25:26.453756Z/{z}/{x}/{y}.png?key=mpedHnQVShodfUBtWv5O')
         .addTo(map);
 
-        // create pre-islamic icon
+        // create icon for achaemenid places
         var myIcon1 = L.icon({
         iconUrl: 'https://github.com/ArnavHonna07/geog456/blob/main/finalProj/data/imgs/icon2.png?raw=true',    
         iconSize: [30,30], 
         popupAnchor: [0,0]
         });
 
-        // create islamic icon
+        // create icon for isfahan
         var myIcon2 = L.icon({
         iconUrl: 'https://github.com/ArnavHonna07/geog456/blob/main/finalProj/data/imgs/islamIcon.png?raw=true',    
         iconSize: [30,30], 
         popupAnchor: [0,0]
         });
 
+        // create icon for tehran
+        var myIcon3 = L.icon({
+        iconUrl: ' https://github.com/ArnavHonna07/geog456/blob/main/finalProj/data/imgs/iranIcon.png?raw=true',    
+        iconSize: [30,30], 
+        popupAnchor: [0,0]
+        });
+
         // place markers
-        var tehranMarker= L.marker([35.72, 51.33], {icon: myIcon1})
+        var tehranMarker= L.marker([35.72, 51.33], {icon: myIcon3})
                             .bindPopup("<b>Tehran: </b>" + "Capital city of Modern Iran")
                             .addTo(map);
         var isfahanMarker = L.marker([32.65, 51.66], {icon: myIcon2})
                             .bindPopup("<b>Isfahan: </b>" + "Capital city of the Safavids who converted Iran to Shi'i Islam")
                             .addTo(map);
-        var persepolisMarker = L.marker([29.93, 52.88])
+        var persepolisMarker = L.marker([29.93, 52.88], {icon: myIcon1})
                             .bindPopup("<b>Persepolis: </b>" + "Capital city of Darius")
                             .addTo(map);
-        var pasargadaeMarker = L.marker([30.19, 53.18])
+        var pasargadaeMarker = L.marker([30.19, 53.18], {icon: myIcon1})
                             .bindPopup("<b>Pasargadae: </b>" + "Capital city of Cyrus. Also where the Tomb of Cyrus is located")
                             .addTo(map);
-        var bisitunMarker = L.marker([34.39, 47.43])
+        var bisitunMarker = L.marker([34.39, 47.43], {icon: myIcon1})
                             .bindPopup("<b>Bisitun Inscription: </b>" + "Inscription that creates the Achaemenid identity. Commissioned by Darius")
                             .addTo(map);
         
