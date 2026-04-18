@@ -5,22 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>eventDynamic</title>
 
-    <!-- leaflet scripts -->
+     <!-- leaflet scripts -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-        crossorigin=""/>
-        
+        crossorigin=""/>  
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
         crossorigin=""></script>
-    
-    <!-- arrowhead scripts from: https://github.com/slutske22/leaflet-arrowheads -->
-    <script src="https://unpkg.com/leaflet-geometryutil@0.10.0/src/leaflet.geometryutil.js"></script>
-    <script src="https://unpkg.com/leaflet-arrowheads@1.4.0/src/leaflet-arrowheads.js"></script>
-    
-    <!-- snake animation plugin -->
-    <script src="./L.Polyline.SnakeAnim.js"></script>
 
+    <!-- polyline animation js script downloaded from: https://github.com/IvanSanchez/Leaflet.Polyline.SnakeAnim  -->
+    <script src="./L.Polyline.SnakeAnim.js"></script>
 
     <style>
         h1{
@@ -42,10 +36,10 @@
     </style>
 </head>
 <body>
-    
+
     <h1 style="color: #ffcc99;">Movement of the two identities debated within the nationalist discourse in Iran since the late 19th century</h1>
     <div id="map"></div>
-    
+
     <script>
         // set map view and zoom
         var map = L.map('map').setView([32.64, 53.90], 5.5);
@@ -54,89 +48,64 @@
         var modernIranLayer = L.tileLayer('https://wmts.oldmapsonline.org/maps/fd0bd384-a1f3-4330-8c0b-0e062f832da1/2025-10-21T08:25:26.453756Z/{z}/{x}/{y}.png?key=mpedHnQVShodfUBtWv5O')
         .addTo(map);
 
+        // create icon
+        var myIcon = L.icon({
+        iconUrl: 'https://github.com/ArnavHonna07/geog456/blob/main/finalProj/data/imgs/icon3.png?raw=true',    
+        iconSize: [40,40]
+        });
+
+        // create markers
+        var tehranMarker= L.marker([35.72, 51.33], {icon: myIcon})
+                            .bindTooltip("Tehran", {permanent: true, direction: 'top'})
+                            
+        var isfahanMarker = L.marker([32.65, 51.66], {icon: myIcon})
+                            .bindTooltip("Isfahan", {permanent: true, direction: 'bottom'})
+                            
+        var persepolisMarker = L.marker([29.93, 52.88], {icon: myIcon})
+                            .bindTooltip("Persepolis", {permanent: true, direction: 'bottom'})
+                            
+        var pasargadaeMarker = L.marker([30.19, 53.18], {icon: myIcon})
+                            .bindTooltip("Pasargadae", {permanent: true})
+                            
+        var bisitunMarker = L.marker([34.39, 47.43], {icon: myIcon})
+                            .bindTooltip("Bisitun", {permanent: true, direction: 'top'})
+                            
+
         // make variables with lat/long of each place                    
-        var bis = L.latLng(34.39, 47.43);
-        var pas = L.latLng(30.19, 53.18);
-        var per = L.latLng(29.93, 52.88);
-        var isf = L.latLng(32.65, 51.66);
-        var teh = L.latLng(35.72, 51.33);
+        var bis = L.latLng(34.39, 47.43); //bisitun
+        var pas = L.latLng(30.19, 53.18); //pasargadae
+        var per = L.latLng(29.93, 52.88); //persepolis
+        var isf = L.latLng(32.65, 51.66); //isfahan
+        var teh = L.latLng(35.72, 51.33); //tehran
 
         // create paths
         var path1 = [bis, pas]; // bisitun to pasargadae
         var path2 = [bis, per]; // bisitun to persepolis
         var path3 = [per, teh]; // persepolis to tehran
         var path4 = [isf, teh]; // isfahan to tehran
-
-          // from bisitun to pasargadae
-        var event1 = L.polyline(path1, {
-            color: 'black',
-            snakingSpeed: 200
-        }).bindPopup("Achaemenid identity is reinforced in Pasargadae through inscriptions put up by Darius that portray Cyrus as an Achaemenid.<br/>" + " <br/> Consequently, the Tomb of Cyrus reinforces the Achaemenid identity due to its use as an investiture site for new kings.");
         
-        // from bisitun to persepolis
-        var event2 = L.polyline(path2, {
-            color: 'black',
-            snakingSpeed: 200
-        }).bindPopup("Achaemenid identity is reinforced in Darius' capital city");
        
-        
-        // from persepolis to tehran
-        var event3 = L.polyline(path3, {
-            color: 'black',
-            opacity: 1,
-            snakingSpeed: 200
-        }).bindPopup("In the late 19th century, Achaemenid identity enters the nationalist discourse after archaeological discoveries in Persepolis");
-        
-        
-        // from isfahan to tehran
-        var event4 = L.polyline(path4, {
-            color: 'black',
-            opacity: 1,
-            snakingSpeed: 200
-        }).bindPopup("In the late 19th century, Iran's Islamic identity contends with the Achaemenid identity in the nationalist discourse");
-        
-        
-        // animate sequentially with delays
-        event1.addTo(map).snakeIn();
-        setTimeout(function() {
-            event2.addTo(map).snakeIn();
-        }, 2000);
-        setTimeout(function() {
-            event3.addTo(map).snakeIn();
-        }, 4000);
-        setTimeout(function() {
-            event4.addTo(map).snakeIn();
-        }, 6000);
+        // create route w/ polylines
+        var eventRoute = L.layerGroup([
+            bisitunMarker,
+            L.polyline(path1, {color:'black', snakingSpeed: 250}),
+            pasargadaeMarker,
+            bisitunMarker,
+            L.polyline(path2, {color:'black', snakingSpeed: 250}),
+            persepolisMarker,
+            persepolisMarker,
+            L.polyline(path3, {color:'black', snakingSpeed: 250}),
+            tehranMarker,
+            isfahanMarker,
+            L.polyline(path4, {color:'black', snakingSpeed: 250}),
+            tehranMarker
+        ], {snakingPause: 50}); // bisitun to pasargadae & persepolis
 
-        // create icon
-        var myIcon = L.icon({
-        iconUrl: 'https://github.com/ArnavHonna07/geog456/blob/main/finalProj/data/imgs/icon3.png?raw=true',    
-        iconSize: [25,25]
-        });
-
-        // place markers
-        var tehranMarker= L.marker([35.72, 51.33], {icon: myIcon})
-                            .bindTooltip("<b>Tehran: </b>" + "Capital city of Modern Iran")
-                            // .bindPopup("<b>Tehran: </b>" + "Capital city of Modern Iran")
-                            .addTo(map);
-        var isfahanMarker = L.marker([32.65, 51.66], {icon: myIcon})
-                            .bindTooltip("<b>Isfahan: </b>" + "Capital city of the Safavids who converted Iran to Shi'i Islam")
-                            // .bindPopup("<b>Isfahan: </b>" + "Capital city of the Safavids who converted Iran to Shi'i Islam")
-                            .addTo(map);
-        var persepolisMarker = L.marker([29.93, 52.88], {icon: myIcon})
-                            .bindTooltip("<b>Persepolis: </b>" + "Capital city of Darius")
-                            // .bindPopup("<b>Persepolis: </b>" + "Capital city of Darius")
-                            .addTo(map);
-        var pasargadaeMarker = L.marker([30.19, 53.18], {icon: myIcon})
-                            .bindTooltip("<b>Pasargadae: </b>" + "Capital city of Cyrus. Also where the Tomb of Cyrus is located")
-                            // .bindPopup("<b>Pasargadae: </b>" + "Capital city of Cyrus. Also where the Tomb of Cyrus is located")
-                            .addTo(map);
-        var bisitunMarker = L.marker([34.39, 47.43], {icon: myIcon})
-                            .bindTooltip("<b>Bisitun Inscription: </b>" + "Inscription that creates the Achaemenid identity. Commissioned by Darius")
-                            // .bindPopup("<b>Bisitun Inscription: </b>" + "Inscription that creates the Achaemenid identity. Commissioned by Darius")
-                            .addTo(map);
-
+        // animate!!
+        eventRoute.addTo(map).snakeIn();
         
+
     </script>
+    
 </body>
 </html>
