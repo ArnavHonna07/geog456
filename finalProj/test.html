@@ -8,13 +8,12 @@
      <!-- leaflet scripts -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-        crossorigin=""/>
-        
+        crossorigin=""/>  
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
         crossorigin=""></script>
 
-    <!-- snake animation plugin -->
+    <!-- polyline animation js script downloaded from: https://github.com/IvanSanchez/Leaflet.Polyline.SnakeAnim  -->
     <script src="./L.Polyline.SnakeAnim.js"></script>
 
     <style>
@@ -58,29 +57,19 @@
         // create markers
         var tehranMarker= L.marker([35.72, 51.33], {icon: myIcon})
                             .bindTooltip("Tehran", {permanent: true, direction: 'top'})
-                            // .bindTooltip("<b>Tehran: </b>" + "Capital city of Modern Iran")
-                            // .bindPopup("<b>Tehran: </b>" + "Capital city of Modern Iran")
-                            // .addTo(map);
+                            
         var isfahanMarker = L.marker([32.65, 51.66], {icon: myIcon})
                             .bindTooltip("Isfahan", {permanent: true, direction: 'bottom'})
-                            // .bindTooltip("<b>Isfahan: </b>" + "Capital city of the Safavids who converted Iran to Shi'i Islam")
-                            // .bindPopup("<b>Isfahan: </b>" + "Capital city of the Safavids who converted Iran to Shi'i Islam")
-                            // .addTo(map);
+                            
         var persepolisMarker = L.marker([29.93, 52.88], {icon: myIcon})
                             .bindTooltip("Persepolis", {permanent: true, direction: 'bottom'})
-                            // .bindTooltip("<b>Persepolis: </b>" + "Capital city of Darius")
-                            // .bindPopup("<b>Persepolis: </b>" + "Capital city of Darius")
-                            // .addTo(map);
+                            
         var pasargadaeMarker = L.marker([30.19, 53.18], {icon: myIcon})
                             .bindTooltip("Pasargadae", {permanent: true})
-                            // .bindTooltip("<b>Pasargadae: </b>" + "Capital city of Cyrus. Also where the Tomb of Cyrus is located")
-                            // .bindPopup("<b>Pasargadae: </b>" + "Capital city of Cyrus. Also where the Tomb of Cyrus is located")
-                            // .addTo(map);
+                            
         var bisitunMarker = L.marker([34.39, 47.43], {icon: myIcon})
                             .bindTooltip("Bisitun", {permanent: true, direction: 'top'})
-                            // .bindTooltip("<b>Bisitun Inscription: </b>" + "Inscription that creates the Achaemenid identity. Commissioned by Darius")
-                            // .bindPopup("<b>Bisitun Inscription: </b>" + "Inscription that creates the Achaemenid identity. Commissioned by Darius")
-                            // .addTo(map);
+                            
 
         // make variables with lat/long of each place                    
         var bis = L.latLng(34.39, 47.43); //bisitun
@@ -96,41 +85,25 @@
         var path4 = [isf, teh]; // isfahan to tehran
         
        
-        // create routes w/ polylines
-        var route1 = L.layerGroup([
+        // create route w/ polylines
+        var eventRoute = L.layerGroup([
             bisitunMarker,
-            L.polyline(path1, {color:'black', snakingSpeed: 200}),
+            L.polyline(path1, {color:'black', snakingSpeed: 250}),
             pasargadaeMarker,
             bisitunMarker,
-            L.polyline(path2, {color:'black', snakingSpeed: 200}),
+            L.polyline(path2, {color:'black', snakingSpeed: 250}),
             persepolisMarker,
             persepolisMarker,
-            L.polyline(path3, {color:'black', snakingSpeed: 200}),
+            L.polyline(path3, {color:'black', snakingSpeed: 250}),
             tehranMarker,
             isfahanMarker,
-            L.polyline(path4, {color:'black', snakingSpeed: 200}),
+            L.polyline(path4, {color:'black', snakingSpeed: 250}),
             tehranMarker
+        ], {snakingPause: 50}); // bisitun to pasargadae & persepolis
 
-        ], {snakingPause: 200}); // bisitun to pasargadae & persepolis
-
-
-        // var route2 = L.layerGroup([
-        //     persepolisMarker,
-        //     L.polyline(path3, {color:'black', snakingSpeed: 200}),
-        //     tehranMarker
-        // ], {snakingPause: 200}); // persepolis to tehran
-
-        // var route3 = L.layerGroup([
-        //     isfahanMarker,
-        //     L.polyline(path4, {color:'black', snakingSpeed: 200}),
-        //     tehranMarker
-        // ], {snakingPause: 200});
-
-        // animate routes
-        route1.addTo(map).snakeIn();
-        // route2.addTo(map).snakeIn();
-        // route3.addTo(map).snakeIn();
-        // route4.addTo(map).snakeIn();
+        // animate!!
+        eventRoute.addTo(map).snakeIn();
+        
 
     </script>
     

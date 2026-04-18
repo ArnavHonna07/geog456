@@ -1,6 +1,6 @@
 
 
-
+// DOWNLOADED FROM: https://github.com/IvanSanchez/Leaflet.Polyline.SnakeAnim
 
 ///// FIXME: Use path._rings instead of path._latlngs???
 ///// FIXME: Panic if this._map doesn't exist when called.
