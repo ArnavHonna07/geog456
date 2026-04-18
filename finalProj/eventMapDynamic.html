@@ -42,6 +42,20 @@
         // 1926 map of Iran (WMTS basemap from OldMapsOnline)
         var modernIranLayer = L.tileLayer('https://wmts.oldmapsonline.org/maps/fd0bd384-a1f3-4330-8c0b-0e062f832da1/2025-10-21T08:25:26.453756Z/{z}/{x}/{y}.png?key=mpedHnQVShodfUBtWv5O')
         .addTo(map);
+
+        // make variables with lat/long of each place                    
+        var bis = L.latLng(34.39, 47.43);
+        var pas = L.latLng(30.19, 53.18);
+        var per = L.latLng(29.93, 52.88);
+        var isf = L.latLng(32.65, 51.66);
+        var teh = L.latLng(35.72, 51.33);
+
+        // create paths
+        var path1 = [bis, pas]; // bisitun to pasargadae
+        var path2 = [bis, per]; // bisitun to persepolis
+        var path3 = [per, teh]; // persepolis to tehran
+        var path4 = [isf, teh]; // isfahan to tehran
+
     </script>
 </body>
 </html>
