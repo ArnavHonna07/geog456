@@ -104,6 +104,12 @@
         // animate!!
         eventRoute.addTo(map).snakeIn();
         
+        // loop animation (used chat agent for this)
+        eventRoute.on('snakeend', function() {
+            setTimeout(function() {
+                eventRoute.snakeIn();
+            }, 500)
+        })
 
     </script>
     
