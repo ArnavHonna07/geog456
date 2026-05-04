@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Images side by side</title>
+</head>
+<style>
+
+    /* CSS formatting from sample code */
+    body {
+          margin: 0; /* Remove default margin */
+          padding: 0; /* Remove default padding */
+          overflow-x: hidden; /* Prevent overflow: something you might want to have for maps on a cellphone screen */
+          background-color: black;
+          color: white;
+          
+        }
+        .row {
+          width: 95vw;
+          background-color: rgb(28, 28, 28); /* Just for demonstration */
+          padding: 20px;
+          border: 1px solid black;
+          display: flex;
+        }
+
+        p {
+          padding-top: 1%;
+          padding-right: 5%;
+          padding-left: 5%;
+          font-size: 30px;
+        }
+        
+        /* Creates two equal columns */
+        .column {
+          flex: 50%;
+          padding: 10px;
+          overflow: hidden; /* Prevent overflow */
+        }
+</style>
+<body>
+    <h1>Images from St.Mary's Glacier (2011 & 2023)</h1>
+    <div class="row">
+        <div class="column">
+          <img  src="./StMaryGlacier_2011.png" alt="2011" style="width:100%">
+        </div>
+        <div class="column">
+            <img  src="./HistogramMatched_StMaryGlacier_2011.png" alt="2011M" style="width:100%">
+        </div>
+        <div class="column">
+            <img  src="./StMaryGlacier_2023.png" alt="2023" style="width:100%">
+        </div>
+      </div>
+
+<p>
+    These images show how St.Mary's Glacier in Colorado has changed since 2011. It has significantly receded as can be seen in the upper right and through the valley near the lakes.
+</p>
+</body>
+</html>
